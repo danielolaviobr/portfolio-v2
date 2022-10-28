@@ -1,10 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useRef } from "react";
-import { useMouse } from "react-use";
-import Card from "../components/card";
-import { trpc } from "../utils/trpc";
 import Image from "next/image";
 import Header from "../components/header";
 import Cards from "../components/cards";
@@ -36,10 +31,12 @@ const Home: NextPage = () => {
           </div>
         </section>
         <Cards />
-        <section className="flex w-full flex-col items-center justify-start p-8">
-          <span className="text-xl font-bold text-gray-50">Timeline</span>
+        <section className="flex w-full flex-col items-center justify-start">
+          <span className="pt-8 text-xl font-bold text-gray-50" id="about">
+            Timeline
+          </span>
           <div className="flex w-full flex-col pt-8">
-            <div className="w-[50%] self-end border-l-2 border-l-zinc-400 pl-8 pt-8">
+            <div className="relative w-[50%] self-end border-l-2 border-l-zinc-400 pl-8 pt-8">
               <span className="relative block text-xl font-medium before:pointer-events-none before:absolute before:-left-[calc(2rem+1px)] before:top-1/2 before:block before:h-2 before:w-2 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-slate-300">
                 Loggi
               </span>
@@ -93,7 +90,14 @@ const Home: NextPage = () => {
           </div>
         </section>
       </main>
-      <div className="h-[1000px]" />
+      <footer className="mt-12 h-36 w-full border-t-2 border-zinc-800">
+        <button className="group flex cursor-pointer items-center justify-center space-x-3 rounded-full border border-zinc-800 px-4 py-2 text-lg">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-800 group-hover:animate-wave-hand">
+            👋🏽
+          </div>
+          <span>Drop a Hey</span>
+        </button>
+      </footer>
     </>
   );
 };

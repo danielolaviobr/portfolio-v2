@@ -45,7 +45,7 @@ export default function Header() {
       animate(opacity, 1);
       animate(textOpacity, 1);
     }
-  }, [height, opacity, textOpacity]);
+  }, [height, opacity, scrollY, textOpacity]);
 
   const startTimer = useCallback(() => {
     timeout.current = setTimeout(() => {
@@ -58,6 +58,11 @@ export default function Header() {
       clearTimeout(timeout.current);
     }
   }, []);
+
+  const animateClose = () => {
+    animate(height, 0, { onComplete: () => opacity.set(0) });
+    animate(textOpacity, 0);
+  };
 
   useEffect(() => {
     return scrollY.onChange((current) => {
@@ -76,10 +81,18 @@ export default function Header() {
         style={{ opacity: textOpacity }}
         className="mx-auto flex h-full w-full max-w-5xl items-center justify-around text-xl font-medium text-zinc-300"
       >
-        <Link href="#">Home</Link>
-        <Link href="#">About</Link>
-        <Link href="#">Code</Link>
-        <Link href="#">Contacts</Link>
+        <Link href="#" passHref legacyBehavior>
+          <a onClick={animateClose}>Home</a>
+        </Link>
+        <Link href="#about" passHref legacyBehavior>
+          <a onClick={animateClose}>About</a>
+        </Link>
+        <Link href="#" passHref legacyBehavior>
+          <a onClick={animateClose}>Code</a>
+        </Link>
+        <Link href="#" passHref legacyBehavior>
+          <a onClick={animateClose}>Contacts</a>
+        </Link>
       </motion.nav>
     </motion.header>
   );
